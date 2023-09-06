@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Slide Assignment</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width , initial-scale = 1.0">
+        <link rel="stylesheet" href="css/game.css" >
+    </head>
+    <body>
+        <h2 id="displayCar" onclick="car('honda')">This is a test</h2>
+        <script>
+            function car(val) {
+                var answer = "this is my favourite car brand(s)" + val;
+                document.getElementById('displayCar').innerHTML = answer;
+
+            }
+
+            // var car;
+            // car = (val) => "this is my favourite car brand(s)" + val;
+            // document.getElementById('displayCar').innerHTML = car("honda and ford")
+        </script>
+    </body>
+</html>
+
