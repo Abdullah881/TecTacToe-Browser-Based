@@ -33,7 +33,7 @@ function placeXOrO(squareNumber) {
         // Disable Click of it is computers turn
         if (activePlayer == "O") {
             disableClick();
-            setTimeout(function(){computersTurn();},1000);
+            setTimeout(function(){computersTurn();},300);
         }
         return true;
     }
@@ -113,3 +113,20 @@ function checkWinConditions(){
     }
 
 }
+
+// This Function makes our body element temporarily un-clickable
+function disableClick () {
+    // this makes out HTML body un-clickable 
+    body.style.pointerEvents = 'none';
+    // this makes our body clickable again in 1 second.
+    setTimeout(function () { body.style.pointerEvents = 'auto' ; } , 1000);
+}
+
+function audio(audioURL){
+    // we create a new object and we pass the path as a parameter 
+    let audio = new Audio(audioURL);
+    //Play method Plays the audio sound
+    audio.play();
+}
+
+
