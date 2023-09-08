@@ -129,4 +129,68 @@ function audio(audioURL){
     audio.play();
 }
 
+// this function draws tye win line
+function drawWinLine (coordX1, coordY1 , coordX2, coordY2) {
+    // first access the HTML canvas element 
+    const canvas = document.getElementById('win-lines');
+    // this line gives access to methods and properties to use on canvas
+    const c = canvas.getContext('2d');
+    // this states where the lines  X axis should start from
+    let x1=  coordX1;
+        // this states where the lines  X axis should end
+        y1 = coordY1;
+        // this states where the lines  Y axis should start
+        x2 = coordX2;
+        // this states where the lines  Y axis should end
+        y2 = coordY2;
+        // this variable stores the x axis data temporarily while we update our animation loop
+        x = x1
+        // this variable stores the y axis data temporarily while we update our animation loop
+        y = x1
+    // this function interacts with the canvas
+    function animateLineDrawing() {
+        // this variable creates a loop
+        const animationLoop = requestAnimationFrame(animateLineDrawing);
+        // use clearRect to clear last animation
+        c.clearRect(0,0,608,608);
+        // use .beginPath() to start a new path
+        c.beginPath();
+        c.moveTo(x1,y1);//set starting point
+        c.lineTo(x,y);//draw till (end point)
+        c.lineWidth = 10;//set line width
+        c.strokeStyle = 'rgba(70,255,33,0.8)' // set line color
+        c.stroke();//function to draw line
+        // this condition checks if the end point has been reached if so it stops the animation
+        if (x1 <= x2 && y1 <= y2) {
+            // this adds 10 to the previous x endpoint
+            if (x < x2) { x += 10;}
+            // this adds 10 to the previous x endpoint
+            if (y < y2) {y += 10;}
+            // this condition is similar to the one above but is needed for win conditions 6,4,2
+            if (x >= x2 && y>= y2) {cancelAnimationFrame(animationLoop);}   
+        }
+        // this condition is similar to the one above but is needed for win conditions 6,4,2
+        if (x1 <= x2 && y1 >= y2){
+            if (x < x2) { x += 10;}
+            if (y > y2) {y -= 10;}
+            if (x >= x2 && y <= y2) {cancelAnimationFrame(animationLoop);}
+        }
+    }
+    //This function clears the canvas after the win line has been drawn
+    function clear() {
+        // this line starts our animation loop
+        const animationLoop = requestAnimationFrame(clear);
+        // this line clears our canvas
+        c.clearRect( 0 , 0 , 608 , 608);
+        //this line stops our animation loop
+        cancelAnimationFrame(animationLoop);
+    }
+    //this line disables clicking while win sound plays
+    disableClick();
+    audio('./media/winGame.mp3');
+    // this line calls the main animation loop
+    animateLineDrawing();
+    // this line waits one second, clears canvas , rests game, allows clicking again
+    setTimeout(function() {clear(); resetGame();},1000)
 
+}
