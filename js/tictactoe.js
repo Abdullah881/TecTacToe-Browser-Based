@@ -136,17 +136,17 @@ function drawWinLine (coordX1, coordY1 , coordX2, coordY2) {
     // this line gives access to methods and properties to use on canvas
     const c = canvas.getContext('2d');
     // this states where the lines  X axis should start from
-    let x1=  coordX1;
+    let x1 =  coordX1,
         // this states where the lines  X axis should end
-        y1 = coordY1;
+        y1 = coordY1,
         // this states where the lines  Y axis should start
-        x2 = coordX2;
+        x2 = coordX2,
         // this states where the lines  Y axis should end
-        y2 = coordY2;
+        y2 = coordY2,
         // this variable stores the x axis data temporarily while we update our animation loop
-        x = x1
+        x = x1,
         // this variable stores the y axis data temporarily while we update our animation loop
-        y = x1
+        y = x1;
     // this function interacts with the canvas
     function animateLineDrawing() {
         // this variable creates a loop
