@@ -33,7 +33,7 @@ function placeXOrO(squareNumber) {
         // Disable Click of it is computers turn
         if (activePlayer == "O") {
             disableClick();
-            setTimeout(function(){computersTurn();},300);
+            setTimeout(function(){computersTurn();},500);
         }
         return true;
     }
@@ -95,7 +95,7 @@ function checkWinConditions(){
         // play tie sound with audio() function
         audio('./media/tie.mp3')
         // reset game after 1 second
-        setTimeout(function() {resetGame();},1000);
+        setTimeout(function() {resetGame();},500);
     }
 
     // this function checks if an array includes 3 strings. It is used to check for each win condition
@@ -193,4 +193,16 @@ function drawWinLine (coordX1, coordY1 , coordX2, coordY2) {
     // this line waits one second, clears canvas , rests game, allows clicking again
     setTimeout(function() {clear(); resetGame();},1000)
 
+}
+
+function resetGame() {
+    // this loop iterates through the HTML square elements 
+    for (let i = 0; i < 9; i++){
+        //this variable gets the HTML element i
+        let square = document.getElementById(String(i))
+        // this removes our elements background image
+        square.style.backgroundImage = '';
+    }
+    // this resets our array to empty so we can start again 
+    selectedSquares = []
 }
